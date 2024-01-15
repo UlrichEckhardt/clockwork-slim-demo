@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use Slim\Psr7\Factory\StreamFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -16,6 +17,11 @@ require __DIR__ . '/../vendor/autoload.php';
  * ServerRequest creator (included with Slim PSR-7)
  */
 $app = AppFactory::create();
+
+$app->get('/favicon.ico', function (Request $request, Response $response, array $args) {
+    $streamFactory = new StreamFactory();
+    return $response->withBody($streamFactory->createStreamFromFile(__DIR__ . '/favicon.ico'));
+});
 
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
