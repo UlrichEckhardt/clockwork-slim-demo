@@ -1,0 +1,17 @@
+{
+    "name": "ulricheckhardt/clockwork-slim-demo",
+    "description": "Demo project integrating Clockwork as profiler into a Slim-based API service.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "ClockworkSlimDemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ulrich Eckhardt",
+            "email": "ulrich.eckhardt@base-42.de"
+        }
+    ],
+    "require": {}
+}
