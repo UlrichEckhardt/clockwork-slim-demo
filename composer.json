@@ -13,5 +13,7 @@
             "email": "ulrich.eckhardt@base-42.de"
         }
     ],
-    "require": {}
+    "require": {
+        "slim/slim": "^4.12"
+    }
 }
