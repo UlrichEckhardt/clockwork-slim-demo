@@ -1,2 +1,5 @@
 # PHP Composer files
 vendor/
+
+# Visual Studio Code (VS Code) IDE configuration
+.vscode/
