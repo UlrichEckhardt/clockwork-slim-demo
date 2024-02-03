@@ -18,6 +18,13 @@ require __DIR__ . '/../vendor/autoload.php';
  */
 $app = AppFactory::create();
 
+/**
+ * Add error middleware
+ *
+ * This gives readable error messages in the browser.
+ */
+$app->addErrorMiddleware(false, false, true);
+
 $app->get('/favicon.ico', function (Request $request, Response $response, array $args) {
     $streamFactory = new StreamFactory();
     return $response->withBody($streamFactory->createStreamFromFile(__DIR__ . '/favicon.ico'));
