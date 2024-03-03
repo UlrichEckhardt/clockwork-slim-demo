@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Clockwork\DataSource\XdebugDataSource;
+use Clockwork\Support\Vanilla\Clockwork;
+use Clockwork\Support\Vanilla\ClockworkMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -24,6 +27,24 @@ $app = AppFactory::create();
  * This gives readable error messages in the browser.
  */
 $app->addErrorMiddleware(false, false, true);
+
+/**
+ * Create Clockwork helper
+ */
+$clockwork = Clockwork::init([
+    'enable' => true,
+]);
+$clockwork->getClockwork()->addDataSource(new XdebugDataSource);
+
+/**
+ * Create Clockwork middleware
+ *
+ * This middleware handles requests to the Clockwork API and web frontend.
+ */
+$clockworkMiddleware = new ClockworkMiddleware($clockwork);
+$clockworkMiddleware->withResponseFactory($app->getResponseFactory());
+
+$app->add($clockworkMiddleware);
 
 $app->get('/favicon.ico', function (Request $request, Response $response, array $args) {
     $streamFactory = new StreamFactory();
