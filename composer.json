@@ -7,6 +7,11 @@
             "ClockworkSlimDemo\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ClockworkSlimDemo\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Ulrich Eckhardt",
@@ -16,5 +21,8 @@
     "require": {
         "slim/slim": "^4.12",
         "slim/psr7": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
     }
 }
