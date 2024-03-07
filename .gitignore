@@ -1,8 +1,8 @@
 # PHP Composer files
-vendor/
+/vendor/
 
 # PHPUnit cache
-.phpunit.cache/
+/.phpunit.cache/
 
 # Visual Studio Code (VS Code) IDE configuration
-.vscode/
+/.vscode/
