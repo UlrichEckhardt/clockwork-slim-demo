@@ -6,7 +6,10 @@ use Clockwork\DataSource\XdebugDataSource;
 use Clockwork\Support\Vanilla\Clockwork;
 use Clockwork\Support\Vanilla\ClockworkMiddleware;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Factory\StreamFactory;
 
@@ -45,6 +48,14 @@ $clockworkMiddleware = new ClockworkMiddleware($clockwork);
 $clockworkMiddleware->withResponseFactory($app->getResponseFactory());
 
 $app->add($clockworkMiddleware);
+
+$app->add(static function (ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface {
+    $uri = $request->getUri();
+    error_log($uri->getPath());
+    $response = $handler->handle($request);
+    error_log('res = ' . $response->getStatusCode());
+    return $response;
+});
 
 $app->get('/favicon.ico', function (Request $request, Response $response, array $args) {
     $streamFactory = new StreamFactory();
