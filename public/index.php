@@ -36,6 +36,10 @@ $app->addErrorMiddleware(false, false, true);
  */
 $clockwork = Clockwork::init([
     'enable' => true,
+    'web' => [
+        'enable' => '/clockwork',
+        'path' => false,
+    ],
 ]);
 $clockwork->getClockwork()->addDataSource(new XdebugDataSource);
 
