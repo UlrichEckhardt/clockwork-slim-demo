@@ -7,4 +7,4 @@ This demo project integrates the two, so you can conveniently try out the combin
 ## Goals
 
 - Both components must be integrated (doh).
-- Sincle Clockwork is a dev tool, it must be simple to enable and unobtrusive when disabled.
+- Since Clockwork is a dev tool, it must be simple to enable and unobtrusive when disabled.
